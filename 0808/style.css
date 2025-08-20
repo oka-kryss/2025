@@ -837,8 +837,8 @@ h2.strong ._underline {
   display: flex;
 }
 .stage_event .border {
-  width: 2px;
-  background-color: #808080;
+  width: 1px;
+  background-color: #80808064;
   display: block;
 }
 .stage_event .block .date {
@@ -877,7 +877,11 @@ h2.strong ._underline {
   padding: 10px 0;
 }
 .stage_event .block .block_in ul li p {
-  margin-bottom: 5px;
+  color: #924e41;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  margin-bottom: 0.1em;
 }
 .stage_event .block .block_in ul li:last-child {
   border-bottom: 1px solid #cecece;
@@ -905,7 +909,7 @@ h2.strong ._underline {
   background: #fff;
   padding: 30px 3%;
   margin-top: 50px;
-  border: 2px solid #808080;
+  border: 1px solid var(--col-text);
   display: flex;
   justify-content: center;
 }
@@ -982,13 +986,19 @@ h2.strong ._underline {
 .stage_event .block_content.yamaguchi-ouen .title::before {
   background-color: #00913a;
 }
-
 .venue {
   color: #fff;
   outline: 5px solid #00a0e9;
   margin-top: 10px;
   text-align: center;
 }
+.time-event_ttl {
+  font-size: 1.2rem;
+}
+.time-event_place {
+  font-size: 0.9rem;
+}
+
 /* ---------   イベント共通   --------- */
 .event .flex {
   display: flex;
@@ -1279,6 +1289,20 @@ h2.strong ._underline {
 .title ._slash.sp {
   display: none;
 }
+.p-support-logoText {
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  margin-right: 0.35em;
+}
+.p-support-logoImg {
+  width: auto;
+  max-width: 150px;
+  max-height: 50px;
+  margin: 0 !important;
+  vertical-align: middle;
+  display: inline-block;
+}
+
 /* ---------   クルマ   --------- */
 .p-workCar_sideCont {
   flex-direction: row;
@@ -1592,7 +1616,7 @@ footer .flex .logo a:hover {
   .stage_event .flex .block:first-child {
     padding-bottom: 60px;
     margin-bottom: 60px;
-    border-bottom: 2px solid #808080;
+    border-bottom: 2px dashed #ccc;
   }
   .stage_event .block {
     width: 100%;
