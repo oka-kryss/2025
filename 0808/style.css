@@ -1241,10 +1241,10 @@ h2.strong ._underline {
   max-width: 300px;
 }
 /* 8/8追記 */
-.one_colum{
+.one_colum {
   flex: 1;
 }
-.one_colum .text{
+.one_colum .text {
   text-align: center;
 }
 /* 未定 */
@@ -1283,7 +1283,7 @@ h2.strong ._underline {
 }
 /* 8/8追記 */
 /* イベント情報は順次更新…のところ */
-.title ._slash.sp{
+.title ._slash.sp {
   display: none;
 }
 /* ---------   クルマ   --------- */
@@ -1303,11 +1303,14 @@ h2.strong ._underline {
 
 /* ---------   水素   --------- */
 .suiso {
-  background-color: #bae3f9;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.7) 9%, transparent 9%),
-    radial-gradient(rgba(255, 255, 255, 0.7) 9%, transparent 9%);
-  background-size: 30px 30px;
-  background-position: 0 0, 75px 75px;
+  background-color: #dff2fd;
+  background-image: repeating-linear-gradient(
+    -60deg,
+    #dff2fd,
+    #dff2fd 15px,
+    #d2edfb 15px,
+    #d2edfb 30px
+  );
 }
 .suiso .p-mv-suiso_pop {
   position: relative;
@@ -2221,27 +2224,27 @@ footer .flex .logo a:hover {
     bottom: 3.5%;
   }
   /* 8/8追記 */
-  .p-mv-ttl._shadow{
+  .p-mv-ttl._shadow {
     z-index: 1;
   }
-  .p-mv-subttl{
+  .p-mv-subttl {
     top: 20vw;
   }
-  .p-mv-imgCont{
+  .p-mv-imgCont {
     height: 100vh;
     overflow: hidden;
   }
-  .p-mv-ttlShadow{
+  .p-mv-ttlShadow {
     top: -5%;
   }
-  .p-mv-imgNote.sp{
+  .p-mv-imgNote.sp {
     font-size: 0.67em;
     top: -10%;
   }
-  .p-mv-free_pop{
+  .p-mv-free_pop {
     width: 30vw;
   }
-  .p-mv-suiso_pop{
+  .p-mv-suiso_pop {
     max-width: 30vw;
   }
   /* ---------   TOP   --------- */
@@ -2270,10 +2273,10 @@ footer .flex .logo a:hover {
   }
   /* 8/8追記 */
   /* news・お知らせ */
-  .news .content .block .right ul li{
+  .news .content .block .right ul li {
     flex-direction: column;
   }
-  .news .content .block .right .date{
+  .news .content .block .right .date {
     max-width: none;
     margin-right: auto;
   }
@@ -2292,30 +2295,30 @@ footer .flex .logo a:hover {
     width: 110px;
   }
   /* 8/8追記 */
-  .event .block:not(.block_l){
+  .event .block:not(.block_l) {
     width: 100%;
   }
-  .block_illust{
+  .block_illust {
     z-index: 1;
     bottom: -79px;
   }
-  .event .block_m .block_illust img{
+  .event .block_m .block_illust img {
     max-width: 120px;
   }
   /* 風船アニメーション部分非表示 */
   .p-bg_balloon_left,
-  .p-bg_balloon_right{
+  .p-bg_balloon_right {
     display: none;
   }
   /* 過去のスライド */
-  .p-sliderCont img{
+  .p-sliderCont img {
     width: calc(100vw / 2);
   }
   /* イベント情報は順次更新…のところ */
-  .title ._slash.pc{
+  .title ._slash.pc {
     display: none;
   }
-  .title ._slash.sp{
+  .title ._slash.sp {
     display: inline;
   }
   /* ---------   お問い合わせ   --------- */
