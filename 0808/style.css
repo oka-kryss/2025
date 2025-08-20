@@ -208,15 +208,8 @@ small {
 .media_outlets .block {
   border: 2px solid #ee7cc2 !important;
 }
-.demo_corner .p-sectionTitle {
-  background-color: var(--col-green);
-  /* width: fit-content; */
-}
 .demo_corner .p-sectionTitle span::before {
-  border-color: transparent var(--col-green) transparent transparent;
-}
-.demo_corner .p-sectionTitle:after {
-  border-color: var(--col-green) transparent transparent transparent;
+  background-color: var(--col-green);
 }
 .demo_corner.event .block {
   border: 2px solid var(--col-green) !important;
@@ -1305,11 +1298,11 @@ h2.strong ._underline {
 .suiso {
   background-color: #dff2fd;
   background-image: repeating-linear-gradient(
-    -60deg,
+    125deg,
     #dff2fd,
-    #dff2fd 15px,
-    #d2edfb 15px,
-    #d2edfb 30px
+    #dff2fd 20px,
+    #d2edfb 20px,
+    #d2edfb 40px
   );
 }
 .suiso .p-mv-suiso_pop {
