@@ -825,6 +825,12 @@ h2.strong ._underline {
   display: block;
 }
 /* ---------   ステージイベント   --------- */
+.stage_event.diagonal {
+  background-image: radial-gradient(circle, #bae3f8 7.5px, transparent 7.5px),
+    radial-gradient(circle, #bae3f8 7.5px, #addef8 7.5px);
+  background-position: 0 0, 17.5px 35px;
+  background-size: 35px 70px;
+}
 .stage_event .content {
   position: relative;
 }
@@ -851,10 +857,26 @@ h2.strong ._underline {
   font-size: 40px;
 }
 .stage_event .block .sat {
-  color: #1d2975;
+  color: #00a0e9;
 }
 .stage_event .block .sun {
-  color: #d62817;
+  color: #e60012;
+}
+.stage_event .block .sat::after {
+  content: "sat";
+}
+.stage_event .block .sun::after {
+  content: "sun";
+}
+.stage_event .block .sat,
+.stage_event .block .sun {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.stage_event .block .sat::after,
+.stage_event .block .sun::after {
+  display: block;
 }
 .stage_event .block .block_in .img_block {
   display: grid;
@@ -929,25 +951,26 @@ h2.strong ._underline {
 }
 .stage_event .block_content.yamaguchi-ouen {
   position: relative;
-  padding: 2% 3%;
-  padding-top: 50px;
-  margin-top: 50px;
-  background-color: #e3efc4;
-  background: repeating-linear-gradient(
-    135deg,
-    #ebf3d3,
-    #ebf3d3 15px,
-    #e2efc8 15px,
-    #e2efc8 30px
-  );
-  border-radius: 10px;
+  padding: 2% 5%;
+  margin-top: 100px;
+  background-color: #fdf9d7;
+  border: 5px solid #edbd33;
+  outline: 2px dotted #edbd33;
+  outline-offset: -15px;
 }
-.stage_event .block_content.yamaguchi-ouen .midashi {
+.stage_event .block_content.yamaguchi-ouen::before {
+  content: "";
   position: absolute;
-  left: 0;
-  top: -30px;
-  width: 100%;
-  text-align: center;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+  width: 102.55%;
+  height: 100%;
+  min-height: 140px;
+  background-image: url("./images/common/yamaguchi-ouen_frame.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .stage_event .block_content.yamaguchi-ouen .midashi img {
   max-width: 420px;
