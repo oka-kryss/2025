@@ -2098,7 +2098,9 @@ footer .flex .logo a:hover {
     border-bottom: 2px solid var(--col-text);
   }
   .stage_event .block .date {
-    width: 30px;
+    align-items: flex-end;
+    flex-direction: row;
+    margin-bottom: var(--m-40);
   }
   .stage_event .block .block_in {
     width: 100%;
@@ -2122,7 +2124,7 @@ footer .flex .logo a:hover {
   .stage_event .block .block_in .mc img {
     width: 80px;
   }
-  .stage_event .flex .block:first-child {
+  .stage_event .flex .block {
     flex-direction: column;
   }
   /* ---------   マルシェ   --------- */
