@@ -9,13 +9,15 @@
   --col-blue: #00a0e9;
   --col-orange: #f39932;
   --fontsize: clamp(16px, 1vw, 18px);
-  --fontsize__big: clamp(32px, 2.85vw, 52px);
-  --fontsize__mid: clamp(32px, 2.5vw, 40px);
+  --fontsize__big: clamp(24px, 2.25vw, 36px);
+  --fontsize__mid: clamp(17px, 1.125vw, 30px);
+  --fontsize__title: clamp(32px, 2.85vw, 52px);
+  --fontsize__subttl: clamp(18px, 1.45vw, 28px);
   --fontsize__small: clamp(14px, 0.75vw, 16px);
   --m-20: clamp(10px, 1.15vw, 35px);
   --m-40: clamp(25px, 1.175vw, 55px);
   --m-60: clamp(45px, 3.25vw, 75px);
-  --m-80: clamp(60px, 4.35vw, 95px);
+  --m-80: clamp(var(--m-60), 4.35vw, 95px);
   --m-100: clamp(80px, 5.415vw, 115px);
 }
 * {
@@ -47,6 +49,9 @@ body {
     #ffeb6e 40px
   );
 }
+a {
+  text-decoration: none;
+}
 .bg-dots {
   background-color: #ffffff;
   background-image: radial-gradient(circle, #fee1294d 7.5px, transparent 7.5px),
@@ -66,6 +71,7 @@ section:has(.p-bg_balloonCont) {
   max-width: 90vw;
   height: 100%;
   margin: 0 auto;
+  pointer-events: none;
 }
 .p-bg_balloon_left,
 .p-bg_balloon_right {
@@ -92,9 +98,9 @@ section:has(.p-bg_balloonCont) {
 .sp {
   display: none;
 }
-h1 {
+/* h1 {
   font-size: 2.5em;
-}
+} */
 .p-sectionTitle {
   font-size: 3em;
   text-align: center;
@@ -114,6 +120,7 @@ h1 {
   width: 100%;
   height: 65px;
   position: absolute;
+  background-color: var(--col-text);
   top: 50%;
   left: 50%;
   translate: -50% -50%;
@@ -122,20 +129,27 @@ h1 {
   transform: skewX(-10deg);
 }
 h3 {
-  font-size: 24px;
+  /* font-size: clamp(20px, 1.175em, 28px); */
+  font-size: var(--fontsize__subttl);
   line-height: 1.6rem;
 }
 h4 {
-  font-size: 1.2em;
+  font-size: clamp(18px, 1.05em, 22px);
 }
 small {
   font-size: 0.7em;
 }
+.mt-20 {
+  margin-top: var(--m-20);
+}
 .mt-40 {
-  margin-top: 40px;
+  margin-top: var(--m-40);
+}
+.mt-60 {
+  margin-top: var(--m-60);
 }
 .mt-80 {
-  margin-top: 80px;
+  margin-top: var(--m-80);
 }
 .mini {
   display: inline-block;
@@ -217,11 +231,21 @@ small {
 .marche .p-sectionTitle span::before {
   background-color: var(--col-red);
 }
+.map .p-sectionTitle span::before {
+  background-color: #fac000;
+}
 .content {
   max-width: 1300px;
   margin: 0 auto;
-  padding: 60px 0;
+  padding: 0 2%;
   position: relative;
+}
+section.event {
+  margin-top: 120px;
+  margin-bottom: 120px;
+}
+section.event + section.event {
+  margin-bottom: 0;
 }
 .block p:not(.text) {
   text-align: justify;
@@ -236,7 +260,7 @@ small {
 }
 .diagonal .content {
   -webkit-transform: skew(0deg, 3deg);
-  padding: 120px 7%;
+  padding: var(--m-100) 2%;
 }
 ul li {
   list-style-type: none;
@@ -252,10 +276,10 @@ img {
   color: var(--col-red);
 }
 ._center {
-  text-align: center;
+  text-align: center !important;
 }
 ._left {
-  text-align: left;
+  text-align: left !important;
 }
 .notes {
   margin-top: var(--m-20);
@@ -297,7 +321,91 @@ img {
   margin: 0 auto;
   padding: var(--m-60) 0;
 }
+.c-btn {
+  width: 320px;
+  height: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  background-color: #fff;
+  border: 1px solid;
+  color: var(--col-text);
+  border-color: currentColor;
+}
+strong {
+  font-size: var(--fontsize__big);
+  font-weight: 900;
+  display: block;
+}
+
+/* ---------   nav   --------- */
+.c-nav {
+  position: fixed;
+  top: -22.5%;
+  left: 0;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 1000;
+
+  transition: top 1s steps(5);
+  will-change: transform;
+}
+.c-nav.is-active:not(.is-clicked) {
+  top: 0;
+}
+.c-nav_inner {
+  position: relative;
+  width: 90vw;
+  margin: 0 auto;
+  padding: var(--m-20);
+  display: flex;
+  gap: var(--m-20);
+  justify-content: center;
+  align-items: center;
+  border: 2px solid;
+  background-color: #fff;
+  font-size: clamp(14px, 0.85vw, 17px);
+}
+.c-nav::before,
+.c-nav_inner::after {
+  content: "";
+  display: block;
+  background-repeat: no-repeat;
+}
+.c-nav::before {
+  height: 5vh;
+  width: 100%;
+  background-image: url("./images/illust/hanging01.svg");
+  background-size: auto 125%;
+  background-position: bottom;
+}
+.c-nav_inner::after {
+  position: absolute;
+  top: 3px;
+  width: 15px;
+  height: 15px;
+  background-image: url("./images/illust/hanging02.svg");
+  background-size: 100% 100%;
+}
+.c-nav_item {
+  color: var(--col-text);
+}
+.c-btn::before,
+.c-nav_item::before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-right: 5px;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 0.3em 0.55em;
+  border-left-color: currentColor;
+  border-right: 0;
+}
 /* ---------   MV   --------- */
 .p-mv-imgCont {
   position: relative;
@@ -667,7 +775,11 @@ main::after {
 }
 .news .content .block .right ul li {
   display: flex;
+  font-size: 1rem;
   text-align: left;
+}
+.news .content .block .right ul li:not(:last-child) {
+  margin-bottom: 5px;
 }
 .news .content .block .right ul li a {
   display: flex;
@@ -695,6 +807,7 @@ main::after {
 /* ---------   販売コーナー   --------- */
 .p-marche_img {
   width: 35vw;
+  max-width: 500px !important;
   height: auto;
 }
 .marche .content {
@@ -702,16 +815,19 @@ main::after {
 }
 h2.strong {
   font-size: 2.5rem;
+  font-size: var(--fontsize__big);
   font-weight: 900;
   color: var(--col-red);
   line-height: 1.3;
   letter-spacing: 2px;
-  margin-bottom: 60px;
+  margin-bottom: var(--m-60);
 }
-strong {
-  font-size: 5rem;
+h2.strong strong {
+  font-size: 4.25rem;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-style: italic;
+  display: inline-block;
+  line-height: 1.25;
 }
 h2.strong ._underline {
   display: inline;
@@ -719,6 +835,7 @@ h2.strong ._underline {
   border-bottom: 5px solid;
   padding-bottom: 2.5px;
   line-height: 1.75;
+  letter-spacing: 2px;
 }
 .marche .content img {
   max-width: 700px;
@@ -739,7 +856,7 @@ h2.strong ._underline {
   padding-top: 50px;
 }
 .marche .content .list_block01 {
-  margin-top: 60px;
+  margin-top: var(--m-60);
 }
 .marche .content .list_block .left .date {
   font-size: 30px;
@@ -758,16 +875,20 @@ h2.strong ._underline {
 }
 .ticket {
   position: absolute;
-  display: flex;
   top: -13px;
   right: 8px;
+  display: flex;
+  gap: 10px;
+}
+.ticket p {
+  display: flex;
+  font-size: clamp(16px, 1em, 20px);
   font-family: "Oswald", sans-serif;
+  font-weight: bold;
   color: red;
   padding: 0 8px;
-  font-size: 17px;
   background-color: #fff;
   border: 3px solid red;
-  font-weight: bold;
 }
 .marche .content .list_block .right h3 {
   text-align: left;
@@ -825,8 +946,15 @@ h2.strong ._underline {
   display: block;
 }
 /* ---------   ステージイベント   --------- */
+.stage_event.diagonal {
+  background-image: radial-gradient(circle, #bae3f8 7.5px, transparent 7.5px),
+    radial-gradient(circle, #bae3f8 7.5px, #addef8 7.5px);
+  background-position: 0 0, 17.5px 35px;
+  background-size: 35px 70px;
+}
 .stage_event .content {
   position: relative;
+  padding: 120px 0;
 }
 .stage_event .flex {
   display: flex;
@@ -837,8 +965,8 @@ h2.strong ._underline {
   display: flex;
 }
 .stage_event .border {
-  width: 2px;
-  background-color: #808080;
+  width: 1px;
+  background-color: #80808064;
   display: block;
 }
 .stage_event .block .date {
@@ -848,13 +976,31 @@ h2.strong ._underline {
   font-family: "Oswald", sans-serif;
 }
 .stage_event .block .date h3 {
-  font-size: 40px;
+  font-size: clamp(32px, 2em, 42px);
+  line-height: 1;
 }
 .stage_event .block .sat {
-  color: #1d2975;
+  color: #00a0e9;
 }
 .stage_event .block .sun {
-  color: #d62817;
+  color: #e60012;
+}
+.stage_event .block .sat::after {
+  content: "sat";
+}
+.stage_event .block .sun::after {
+  content: "sun";
+}
+.stage_event .block .sat,
+.stage_event .block .sun {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.stage_event .block .sat::after,
+.stage_event .block .sun::after {
+  display: block;
+  line-height: 1;
 }
 .stage_event .block .block_in .img_block {
   display: grid;
@@ -877,7 +1023,11 @@ h2.strong ._underline {
   padding: 10px 0;
 }
 .stage_event .block .block_in ul li p {
-  margin-bottom: 5px;
+  color: #924e41;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  margin-bottom: 0.1em;
 }
 .stage_event .block .block_in ul li:last-child {
   border-bottom: 1px solid #cecece;
@@ -905,7 +1055,7 @@ h2.strong ._underline {
   background: #fff;
   padding: 30px 3%;
   margin-top: 50px;
-  border: 2px solid #808080;
+  border: 1px solid var(--col-text);
   display: flex;
   justify-content: center;
 }
@@ -925,25 +1075,27 @@ h2.strong ._underline {
 }
 .stage_event .block_content.yamaguchi-ouen {
   position: relative;
-  padding: 2% 3%;
-  padding-top: 50px;
-  margin-top: 50px;
-  background-color: #e3efc4;
-  background: repeating-linear-gradient(
-    135deg,
-    #ebf3d3,
-    #ebf3d3 15px,
-    #e2efc8 15px,
-    #e2efc8 30px
-  );
-  border-radius: 10px;
+  padding: 80px 5% 2%;
+  margin-top: 80px;
+  background-color: #fdf9d7;
+  border: 5px solid #edbd33;
+  outline: 3px dotted #edbd33;
+  outline-offset: -15px;
 }
-.stage_event .block_content.yamaguchi-ouen .midashi {
+.stage_event .block_content.yamaguchi-ouen::before {
+  content: "";
   position: absolute;
-  left: 0;
-  top: -30px;
-  width: 100%;
-  text-align: center;
+  top: -75px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+  width: 102%;
+  height: 100%;
+  min-height: 140px;
+  background-image: url("./images/common/yamaguchi-ouen_frame.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
 }
 .stage_event .block_content.yamaguchi-ouen .midashi img {
   max-width: 420px;
@@ -982,13 +1134,26 @@ h2.strong ._underline {
 .stage_event .block_content.yamaguchi-ouen .title::before {
   background-color: #00913a;
 }
-
+.stage_event .block_content .title h4 {
+  font-size: var(--fontsize__subttl);
+  line-height: 1.25;
+  text-align: left;
+  /* font-size: clamp(20px, 1.175em, 28px); */
+}
 .venue {
   color: #fff;
   outline: 5px solid #00a0e9;
   margin-top: 10px;
   text-align: center;
 }
+.time-event_ttl {
+  font-size: var(--fontsize__mid);
+  /* font-size: clamp(16px, 1em, 18px); */
+}
+.time-event_place {
+  font-size: 0.9rem;
+}
+
 /* ---------   イベント共通   --------- */
 .event .flex {
   display: flex;
@@ -1012,8 +1177,9 @@ h2.strong ._underline {
   position: relative;
   text-align: center;
   box-sizing: border-box;
+  border-radius: 1vw;
 }
-.event .block .mini {
+.event .block .p-support-logoText {
   margin-top: 10px;
 }
 .block.empty {
@@ -1021,19 +1187,14 @@ h2.strong ._underline {
 }
 .event .block_l {
   width: 100%;
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding-top: var(--m-60);
+  padding-bottom: var(--m-60);
 }
 .event .block_l h3 {
   font-size: 2rem;
 }
-.event .block_l h3:has(._underline) {
-  font-size: 2.25rem;
-  color: var(--col-red);
-  transform: skew(-10deg);
-}
-.event .block_l h3 ._underline {
-  padding: 0 5px;
+.event .block:not(.block_l, .block_m) h3 {
+  font-size: 1.35rem;
 }
 .event .flex.column {
   width: calc((100% / 4) - 10px);
@@ -1059,15 +1220,6 @@ h2.strong ._underline {
 .block_l h3 ._underline {
   background: linear-gradient(transparent 60%, var(--col-yellow) 60%);
 }
-/* .kids_event .block_l h3 ._underline {
-  background: linear-gradient(transparent 60%, #ffcd99 60%);
-}
-.experience_event .block_l h3 ._underline {
-  background: linear-gradient(transparent 60%, #c0b2ff 60%);
-}
-.suiso .block_l h3 ._underline {
-  background: linear-gradient(transparent 60%, #9cdfff 60%);
-} */
 .suiso .block_ss h3 ._underline {
   background: none;
   padding: 30px 20px 20px 20px !important;
@@ -1154,7 +1306,7 @@ h2.strong ._underline {
   margin-left: 5px;
 }
 .date p {
-  font-size: 1.25em;
+  font-size: clamp(22px, 1.5em, 32px);
 }
 .date p span {
   font-size: 0.8em;
@@ -1176,7 +1328,7 @@ h2.strong ._underline {
   padding-left: 1em;
 }
 .event .block .caution {
-  max-width: 360px;
+  max-width: 3var (--m-60);
   position: relative;
   margin: 0 auto;
   margin-top: 30px;
@@ -1279,6 +1431,22 @@ h2.strong ._underline {
 .title ._slash.sp {
   display: none;
 }
+.p-support-logoText {
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  margin-right: 0.35em;
+  display: inline-block;
+  line-height: 1.5;
+}
+.p-support-logoImg {
+  width: auto;
+  max-width: 150px;
+  max-height: 50px;
+  margin: 0 !important;
+  vertical-align: middle;
+  display: inline-block;
+}
+
 /* ---------   クルマ   --------- */
 .p-workCar_sideCont {
   flex-direction: row;
@@ -1288,10 +1456,10 @@ h2.strong ._underline {
   flex-direction: row;
 }
 .p-workCar_img {
-  width: 50%;
+  width: 65%;
 }
 .p-workCar_side {
-  width: 22.5%;
+  width: 17.5%;
 }
 
 /* ---------   水素   --------- */
@@ -1314,11 +1482,20 @@ h2.strong ._underline {
 .suiso.diagonal {
   margin-bottom: 0;
 }
+.suiso .title {
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 3px dotted #00a0e9;
+}
+.suiso .title h3 {
+  letter-spacing: 1.2px;
+  line-height: 1.5;
+}
 .suiso .sb_title {
   margin: 50px 0;
 }
 .suiso .sb_title span {
-  font-size: 30px;
+  font-size: clamp(27px, 1.45em, 36px);
   display: table;
   margin: 0 auto;
   padding: 8px 15px;
@@ -1326,22 +1503,29 @@ h2.strong ._underline {
   background-color: #009fe8;
   color: #fff;
   text-align: center;
+  line-height: 1;
   letter-spacing: 2px;
   margin-top: 10px;
 }
 .suiso .link {
+  position: relative;
   color: var(--col-text);
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 400px;
-  margin: 50px auto 80px auto;
+  width: auto;
   background-color: #fff;
+  margin-bottom: 80px;
   padding: 10px 20px;
-  border: 2px solid var(--col-text);
+  color: #009fe8;
+  border: 4px solid currentColor;
+}
+.suiso .link::before {
+  content: "詳しくはこちら";
+  display: block;
+  color: #fff;
+  padding: 0 2%;
+  background-color: #009fe8;
 }
 .shunan_logo {
-  max-width: 240px;
+  max-width: 350px;
 }
 .suiso_title {
   text-align: center;
@@ -1354,26 +1538,23 @@ h2.strong ._underline {
 .event .flex {
   row-gap: 50px;
 }
+.p-suiso_event-tanusuke {
+  position: absolute;
+  bottom: 10px;
+  right: 25px;
+  width: 25% !important;
+  max-width: 100px !important;
+}
+.p-suiso_event-tanusukeCont + p {
+  margin-left: 0 !important;
+  width: 80% !important;
+  text-align: left !important;
+}
 /* ---------   会場案内   --------- */
-.map.diagonal {
-  margin-bottom: 0;
+.map .content {
+  padding-left: 0;
+  padding-right: 0;
 }
-.map .flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.map .flex .left {
-  width: calc(60% - 10px);
-}
-.map .flex .right {
-  width: calc(40% - 10px);
-  text-align: center;
-}
-.map .flex .right .venue {
-  margin-top: 20px;
-}
-
 /* ---------   お問い合わせ   --------- */
 .contact_content {
   padding: 120px 7% 0 7% !important;
@@ -1383,7 +1564,7 @@ h2.strong ._underline {
 }
 .contact_content p {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: var(--m-60);
 }
 .contact_content .contact_in {
   margin: 0 auto;
@@ -1543,7 +1724,7 @@ footer .flex .logo a:hover {
     max-width: 580px;
   }
   .event .block {
-    width: calc((100% / 3) - 10px);
+    width: calc((100% / 2) - 10px);
     border: 2px solid var(--col-text);
     padding: 40px 20px 20px 20px;
     position: relative;
@@ -1590,9 +1771,10 @@ footer .flex .logo a:hover {
     display: block;
   }
   .stage_event .flex .block:first-child {
-    padding-bottom: 60px;
-    margin-bottom: 60px;
-    border-bottom: 2px solid #808080;
+    /* padding-bottom: var(--m-60); */
+    padding-bottom: 0;
+    margin-bottom: var(--m-60);
+    border-bottom: 2px dashed #ccc;
   }
   .stage_event .block {
     width: 100%;
@@ -1664,11 +1846,15 @@ footer .flex .logo a:hover {
   .pc {
     display: none;
   }
+  section.event {
+    margin-top: var(--m-40);
+    margin-bottom: var(--m-40);
+  }
   .content {
-    padding: 60px 4%;
+    padding: var(--m-40) 0;
   }
   .diagonal .content {
-    padding: 120px 4%;
+    padding: 50px 0;
   }
   h1 {
     font-size: 2.4em;
@@ -1876,16 +2062,6 @@ footer .flex .logo a:hover {
   .menu_list a:hover {
     background-color: #c8c8c8;
   }
-  #kids_event .content,
-  #experience_event .content,
-  #toyota_corner .content,
-  #various_corner .content,
-  #suiso .content {
-    padding: 100px 0;
-  }
-  .map.diagonal {
-    margin-top: 120px;
-  }
   .suiso.diagonal {
     padding-bottom: 120px;
   }
@@ -1903,9 +2079,6 @@ footer .flex .logo a:hover {
   .event .content {
     position: relative;
   }
-  .stage_event .block_content.yamaguchi-ouen {
-    padding-top: 30px;
-  }
   .accordion_title,
   .accordion_content {
     -webkit-backface-visibility: hidden;
@@ -1916,7 +2089,7 @@ footer .flex .logo a:hover {
     display: block;
     cursor: pointer;
     position: absolute;
-    padding-bottom: 60px;
+    padding-bottom: var(--m-60);
     z-index: 999;
     bottom: 0;
     left: 0;
@@ -2009,7 +2182,9 @@ footer .flex .logo a:hover {
     border-bottom: 2px solid var(--col-text);
   }
   .stage_event .block .date {
-    width: 30px;
+    align-items: flex-end;
+    flex-direction: row;
+    margin-bottom: var(--m-20);
   }
   .stage_event .block .block_in {
     width: 100%;
@@ -2018,10 +2193,6 @@ footer .flex .logo a:hover {
   .stage_event .block_content .title {
     display: flex;
     text-align: center;
-  }
-  .stage_event .block_content .title h3,
-  .stage_event .block_content .title h4 {
-    font-size: 18px;
   }
   .stage_event .block .block_in .img_block .text:has(.mc) {
     flex-direction: column;
@@ -2033,7 +2204,9 @@ footer .flex .logo a:hover {
   .stage_event .block .block_in .mc img {
     width: 80px;
   }
-
+  .stage_event .flex .block {
+    flex-direction: column;
+  }
   /* ---------   マルシェ   --------- */
   .marche .content:after {
     width: 109px;
@@ -2087,12 +2260,9 @@ footer .flex .logo a:hover {
   .event .block_s {
     height: auto;
   }
-  .event .block_l h3 {
-    font-size: 21px;
-  }
   .experience_event .title .sb_title {
-    width: 60px;
-    height: 60px;
+    width: var(--m-60);
+    height: var(--m-60);
     font-size: 12px;
   }
   .experience_event .title .sb_title span {
@@ -2122,9 +2292,6 @@ footer .flex .logo a:hover {
   .various_corner .block_m {
     border: 6px solid var(--col-green) !important;
   }
-  .suiso .sb_title span {
-    font-size: 18px;
-  }
   .suiso_title .copy {
     font-size: 18px;
   }
@@ -2134,12 +2301,10 @@ footer .flex .logo a:hover {
   }
   /* ---------   水素   --------- */
   .suiso .p-mv-suiso_pop {
-    position: absolute;
     max-width: 60%;
-    margin: 0 auto;
-    left: 50%;
-    top: -100px;
-    transform: translateX(-50%);
+  }
+  .p-suiso_event-tanusukeCont + p {
+    width: 70% !important;
   }
   /* ---------   プレゼント   --------- */
   .present .content .content_in p span {
@@ -2157,7 +2322,6 @@ footer .flex .logo a:hover {
     top: auto;
     height: 100%;
     max-width: 99vw;
-    pointer-events: none;
   }
   .p-bg_balloon_left,
   .p-bg_balloon_right {
@@ -2170,12 +2334,10 @@ footer .flex .logo a:hover {
   }
   .p-workCar_img {
     width: 100%;
-    /* order: 0; */
   }
   .p-workCar_side {
     position: absolute;
     width: 32.5%;
-    /* order: 1; */
   }
   .p-workCar_side._right {
     top: 0;
@@ -2186,16 +2348,6 @@ footer .flex .logo a:hover {
     right: 0;
   }
   /* ---------   会場案内   --------- */
-  .map .flex {
-    display: block;
-  }
-  .map .flex .left {
-    width: 100%;
-  }
-  .map .flex .right {
-    width: 100%;
-    margin: 40px auto 0 auto;
-  }
   /* ---------   お問い合わせ   --------- */
   .contact_content p {
     margin-bottom: 40px;
@@ -2211,12 +2363,8 @@ footer .flex .logo a:hover {
     z-index: 2;
   }
   .c-mv_pop {
-    /* 8/8変更 */
-    /* flex-direction: column;
-    gap: 0; */
     bottom: 3.5%;
   }
-  /* 8/8追記 */
   .p-mv-ttl._shadow {
     z-index: 1;
   }
@@ -2254,18 +2402,9 @@ footer .flex .logo a:hover {
     left: -15px;
     height: 40px;
   }
-  .come01 {
-    /* text-align: left; */
-    font-size: 0.8em;
-    position: relative;
-    top: 20px;
-    padding: 0 2%;
-  }
   .timetable h4 {
     font-size: 1em;
   }
-  /* 8/8追記 */
-  /* news・お知らせ */
   .news .content .block .right ul li {
     flex-direction: column;
   }
@@ -2283,7 +2422,7 @@ footer .flex .logo a:hover {
   }
   .toyota_corner .content:after {
     top: 172px;
-    height: 60px;
+    height: var(--m-60);
     right: 5vw;
     width: 110px;
   }
@@ -2314,9 +2453,17 @@ footer .flex .logo a:hover {
   .title ._slash.sp {
     display: inline;
   }
-  /* ---------   お問い合わせ   --------- */
-  .contact_content {
-    padding: 120px 4% 0 4% !important;
+
+  /* ---------   スケジュール   --------- */
+  .stage_event .block_content.yamaguchi-ouen {
+    padding-top: 30px;
+  }
+  .stage_event .block_content.yamaguchi-ouen {
+    padding-top: 30px;
+    margin-top: 50px;
+  }
+  .stage_event .block_content.yamaguchi-ouen::before {
+    top: -55px;
   }
 }
 
@@ -2442,6 +2589,6 @@ footer .flex .logo a:hover {
   place-items: center;
 }
 .comingsoon {
-  font-size: var(--fontsize__mid);
+  font-size: var(--fontsize__big);
   text-align: center;
 }
