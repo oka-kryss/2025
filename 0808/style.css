@@ -360,7 +360,7 @@ strong {
   position: relative;
   width: 90vw;
   margin: 0 auto;
-  padding: var(--m-20);
+  padding: 1.75vh var(--m-20);
   display: flex;
   gap: var(--m-20);
   justify-content: center;
